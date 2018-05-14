@@ -10,6 +10,8 @@
                           :components ((:file "p1")
                                        (:file "p2")
                                        (:file "p3")
+                                       (:file "p4")
                                        (:file "euler"
-                                              :depends-on ("p1" "p2" "p3")))))
+                                              :depends-on ("p1" "p2" "p3"
+                                                                "p4")))))
     :in-order-to ((test-op (test-op "euler-tests"))))
