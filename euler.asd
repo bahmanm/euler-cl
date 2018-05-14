@@ -8,5 +8,6 @@
     :serial t
     :components ((:module "src"
                           :components ((:file "p1")
-                                       (:file "euler" :depends-on ("p1")))))
+                                       (:file "p2")
+                                       (:file "euler" :depends-on ("p1" "p2")))))
     :in-order-to ((test-op (test-op "euler-tests"))))
