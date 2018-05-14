@@ -13,8 +13,8 @@
 (in-suite p2-test-suite)
 
 (test solution
-      (is (= 2 (euler/p2::solution 2)))
-      (is (= 2 (euler/p2::solution 3)))
-      (is (= 2 (euler/p2::solution 5)))
-      (is (= 2 (euler/p2::solution 6)))
-      (is (= 10 (euler/p2::solution 14))))
+  (is (= 2 (euler/p2::solution 2)))
+  (is (= 2 (euler/p2::solution 3)))
+  (is (= 2 (euler/p2::solution 5)))
+  (is (= 2 (euler/p2::solution 6)))
+  (is (= 10 (euler/p2::solution 14))))
