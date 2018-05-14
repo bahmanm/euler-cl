@@ -7,11 +7,14 @@
                 :depends-on ("euler" "fiveam")
                 :serial t
                 :components ((:module "tests"
-                                      :components ((:file "test-p1")
+                                      :components ((:file "test-utils")
+                                                   (:file "test-p1")
                                                    (:file "test-p2")
                                                    (:file "test-p3")
                                                    (:file "test-p4"))))
                 :perform (asdf:test-op (op c)
+                                       (uiop:symbol-call :fiveam '#:run!
+                                                         (uiop:find-symbol* '#:utils-test-suite :euler/tests/utils))
                                        (uiop:symbol-call :fiveam '#:run!
                                                          (uiop:find-symbol* '#:p1-test-suite :euler/tests/p1))
                                        (uiop:symbol-call :fiveam '#:run!

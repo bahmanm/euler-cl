@@ -7,7 +7,8 @@
     :depends-on ()
     :serial t
     :components ((:module "src"
-                          :components ((:file "p1")
+                          :components ((:file "utils")
+                                       (:file "p1")
                                        (:file "p2")
                                        (:file "p3")
                                        (:file "p4")
