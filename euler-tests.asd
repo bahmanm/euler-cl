@@ -8,9 +8,12 @@
                 :serial t
                 :components ((:module "tests"
                                       :components ((:file "test-p1")
-                                                   (:file "test-p2"))))
+                                                   (:file "test-p2")
+                                                   (:file "test-p3"))))
                 :perform (asdf:test-op (op c)
                                        (uiop:symbol-call :fiveam '#:run!
                                                          (uiop:find-symbol* '#:p1-test-suite :euler/tests/p1))
                                        (uiop:symbol-call :fiveam '#:run!
-                                                         (uiop:find-symbol* '#:p2-test-suite :euler/tests/p2))))
+                                                         (uiop:find-symbol* '#:p2-test-suite :euler/tests/p2))
+                                       (uiop:symbol-call :fiveam '#:run!
+                                                         (uiop:find-symbol* '#:p3-test-suite :euler/tests/p3))))

@@ -9,5 +9,7 @@
     :components ((:module "src"
                           :components ((:file "p1")
                                        (:file "p2")
-                                       (:file "euler" :depends-on ("p1" "p2")))))
+                                       (:file "p3")
+                                       (:file "euler"
+                                              :depends-on ("p1" "p2" "p3")))))
     :in-order-to ((test-op (test-op "euler-tests"))))
