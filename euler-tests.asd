@@ -25,4 +25,6 @@
                                        (uiop:symbol-call :fiveam '#:run!
                                                          (uiop:find-symbol* '#:p4-test-suite :euler/tests/p4))
                                        (uiop:symbol-call :fiveam '#:run!
-                                                         (uiop:find-symbol* '#:p5-test-suite :euler/tests/p5))))
+                                                         (uiop:find-symbol* '#:p5-test-suite :euler/tests/p5))
+                                       (uiop:symbol-call :fiveam '#:run!
+                                                         (uiop:find-symbol* '#:p6-test-suite :euler/tests/p6))))
