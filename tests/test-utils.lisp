@@ -35,3 +35,9 @@
   (is (equal '() (euler/utils:string-to-list "")))
   (is (equal '("a") (euler/utils:string-to-list "a")))
   (is (equal '("a" "2" "b") (euler/utils:string-to-list "a2b"))))
+
+(test string-to-integer-list
+  (is (equal '() (euler/utils:string-to-integer-list nil)))
+  (is (equal '() (euler/utils:string-to-integer-list "")))
+  (is (equal '(1) (euler/utils:string-to-integer-list "1")))
+  (is (equal '(1 2 3) (euler/utils:string-to-integer-list "123"))))
