@@ -29,3 +29,9 @@
       (is (= 30 (gethash 'c result)))
       (is (= 300 (gethash 'd result)))
       (is (= 400 (gethash 'e result))))))
+
+(test string-to-list
+  (is (equal '() (euler/utils:string-to-list nil)))
+  (is (equal '() (euler/utils:string-to-list "")))
+  (is (equal '("a") (euler/utils:string-to-list "a")))
+  (is (equal '("a" "2" "b") (euler/utils:string-to-list "a2b"))))

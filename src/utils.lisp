@@ -2,7 +2,7 @@
 ;;;;
 (defpackage euler/utils
   (:use :cl)
-  (:export #:hash-table-merge))
+  (:export #:hash-table-merge #:string-to-list))
 (in-package :euler/utils)
 
 ;;; Returns a new hashtable containing keys from `ht1 and `ht2` along with
@@ -17,3 +17,9 @@
     (maphash map-func ht1)
     (maphash map-func ht2)
     result))
+
+;;; Converts S to a list of strings where each element (which is a string)
+;;; represents a character of S.
+;;;
+(defun string-to-list (s)
+  (map 'list #'string s))
