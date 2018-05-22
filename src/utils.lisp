@@ -2,7 +2,8 @@
 ;;;;
 (defpackage euler/utils
   (:use :cl)
-  (:export #:hash-table-merge #:string-to-list #:string-to-integer-list))
+  (:export #:hash-table-merge #:string-to-list #:string-to-integer-list
+           #:integer-to-list))
 (in-package :euler/utils)
 
 ;;; Returns a new hashtable containing keys from `ht1 and `ht2` along with
@@ -30,3 +31,16 @@
 ;;; Example: (STRING-TO-INTEGER-LIST "123") -> (1 2 3)
 (defun string-to-integer-list (s)
   (mapcar #'parse-integer (string-to-list s)))
+
+;;; Converts a given number to a list of digits preserving the order.
+;;; Example: (INTEGER-TO-LIST 123) -> (1 2 3)
+;;;
+(defun integer-to-list (n)
+  (if (zerop n) '(0)
+      (labels ((number-to-list (n result)
+                 (if (zerop n)
+                     result
+                     (multiple-value-bind (divisor remainder)
+                         (floor n 10)
+                       (number-to-list divisor (cons remainder result))))))
+        (number-to-list n '()))))

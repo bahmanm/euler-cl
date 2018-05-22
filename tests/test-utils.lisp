@@ -41,3 +41,8 @@
   (is (equal '() (euler/utils:string-to-integer-list "")))
   (is (equal '(1) (euler/utils:string-to-integer-list "1")))
   (is (equal '(1 2 3) (euler/utils:string-to-integer-list "123"))))
+
+(test number-to-list
+  (is (equal '(0) (euler/utils:integer-to-list 0)))
+  (is (equal '(1 2 3) (euler/utils:integer-to-list 123)))
+  (is (equal '(1 2 3 4 5 6 7 8 9 0) (euler/utils:integer-to-list 1234567890))))
