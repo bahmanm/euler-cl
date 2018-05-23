@@ -16,8 +16,9 @@
                                      (:file "p6")
                                      (:file "p7")
                                      (:file "p8")
+                                     (:file "p9")
                                      (:file "euler"
                                             :depends-on
                                             ("p1" "p2" "p3" "p4" "p5"
-                                                  "p6" "p7" "p8")))))
+                                                  "p6" "p7" "p8" "p9")))))
   :in-order-to ((test-op (test-op "euler-tests"))))
