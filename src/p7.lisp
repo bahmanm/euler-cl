@@ -18,7 +18,7 @@
                         current-number
                         (nth-prime (1- remainder) (+ current-number 2)))
                     (nth-prime remainder (+ current-number 2)))))
-       (nth-prime n 1)))))
+       (nth-prime (- n 4) 9))))) ; start from next odd number after 7
 
 (defun solution (&optional (n 10001))
   (nth-prime n))
