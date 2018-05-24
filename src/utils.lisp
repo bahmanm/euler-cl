@@ -45,11 +45,12 @@
                        (number-to-list divisor (cons remainder result))))))
         (number-to-list n '()))))
 
-;;; Determines whether a given *positive* integer is prime.
+;;; Determines whether a natural number is prime.
 ;;; Example: (PRIMEP 7) -> T  ; (PRIMEP 24) -> NIL
 ;;;
 (defun primep (n)
   (cond
+    ((= n 1) nil)
     ((member n '(2 3 5)) t)
     ((zerop (mod n 2)) nil)
     ((zerop (mod n 3)) nil)
