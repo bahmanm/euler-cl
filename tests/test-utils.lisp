@@ -46,3 +46,9 @@
   (is (equal '(0) (euler/utils:integer-to-list 0)))
   (is (equal '(1 2 3) (euler/utils:integer-to-list 123)))
   (is (equal '(1 2 3 4 5 6 7 8 9 0) (euler/utils:integer-to-list 1234567890))))
+
+(test primep
+  (is-true (euler/utils::primep 3))
+  (is-true (euler/utils::primep 2))
+  (is-true (euler/utils::primep 17))
+  (is-false (euler/utils::primep 15)))

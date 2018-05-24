@@ -12,12 +12,6 @@
 (in-suite p7-test-suite)
 
 
-(test primep
-  (is-true (euler/p7::primep 3))
-  (is-true (euler/p7::primep 2))
-  (is-true (euler/p7::primep 17))
-  (is-false (euler/p7::primep 15)))
-
 (test nth-prime
   (is (= 2 (euler/p7::nth-prime 1)))
   (is (= 3 (euler/p7::nth-prime 2)))
