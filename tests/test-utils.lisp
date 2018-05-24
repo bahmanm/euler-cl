@@ -49,7 +49,7 @@
 
 (test primep
   (is-false (euler/utils::primep 1))
-  (is-true (euler/utils::primep 3))
   (is-true (euler/utils::primep 2))
+  (is-true (euler/utils::primep 3))
   (is-true (euler/utils::primep 17))
   (is-false (euler/utils::primep 15)))
