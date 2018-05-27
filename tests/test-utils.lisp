@@ -53,3 +53,9 @@
   (is-true (euler/utils::primep 3))
   (is-true (euler/utils::primep 17))
   (is-false (euler/utils::primep 15)))
+
+(test mapmax
+  (is (= 2 (euler/utils::mapmax (lambda (x) (* x x x)) '(-6 1 2))))
+  (is (= -6 (euler/utils::mapmax (lambda (x) (* x x x)) '(-6 1 2) #'<)))
+  (is (equal '(1 2 3) (euler/utils::mapmax #'length '((1 2 3) (1) (1 2)) #'>)))
+  (is (equal '(1) (euler/utils::mapmax #'length '((1 2 3) (1) (1 2)) #'<))))

@@ -62,3 +62,14 @@
                     ((zerop (mod n (+ current-factor 2))) nil)
                     ((primep (+ current-factor 6))))))
          (primep 5))))))
+
+;;; Maps all the elements of LL using MAP-FUNC and finds the maximum mapped
+;;; element using COMPARE-FUNC. Returns only the original element.
+;;; Example: (MAPMAX (LAMBDA (X) (* X X X)) '(-6 1 2)) -> 2
+;;;          (MAPMAX (LAMBDA (X) (* X X X)) '(-6 1 2) #'<) -> -6
+;;;
+(defun mapmax (map-func ll &optional (compare-func #'>))
+  (labels ((map-func* (x) (list (funcall map-func x) x))
+           (maxcar (x y) (if (funcall compare-func (car x) (car y)) x y)))
+    (let ((ll (mapcar #'map-func* ll)))
+      (car (cdr (reduce #'maxcar ll))))))
