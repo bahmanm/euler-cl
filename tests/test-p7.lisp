@@ -18,8 +18,6 @@
   (is (= 5 (euler/p7::nth-prime 3)))
   (is (= 7 (euler/p7::nth-prime 4)))
   (is (= 11 (euler/p7::nth-prime 5)))
-    (print "here")
-
   (is (= 13 (euler/p7::nth-prime 6))))
 
 (test solution
