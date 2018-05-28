@@ -4,7 +4,7 @@
   :description "Project Euler using Common Lisp"
   :author "Bahman Movaqar <Bahman@BahmanM.com>"
   :license "Apache License v2.0"
-  :depends-on ()
+  :depends-on ("cl-ppcre")
   :serial t
   :components ((:module "src"
                         :components ((:file "utils")
@@ -18,9 +18,10 @@
                                      (:file "p8")
                                      (:file "p9")
                                      (:file "p10" :depends-on ("utils"))
+                                     (:file "p11" :depends-on ("utils"))
                                      (:file "euler"
                                             :depends-on
                                             ("p1" "p2" "p3" "p4" "p5"
                                                   "p6" "p7" "p8" "p9"
-                                                  "p10")))))
+                                                  "p10" "p11")))))
   :in-order-to ((test-op (test-op "euler-tests"))))
