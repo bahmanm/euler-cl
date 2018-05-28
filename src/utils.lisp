@@ -3,7 +3,7 @@
 (defpackage euler/utils
   (:use :cl)
   (:export #:hash-table-merge #:string-to-list #:string-to-integer-list
-           #:integer-to-list #:primep))
+           #:integer-to-list #:primep #:mapmax))
 (in-package :euler/utils)
 
 ;;; Returns a new hashtable containing keys from `ht1 and `ht2` along with
