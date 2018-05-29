@@ -17,4 +17,5 @@
   (format t "  ~20a ~a~%" "Problem #8:" (euler/p8:solution))
   (format t "  ~20a ~a~%" "Problem #9:" (euler/p9:solution))
   (format t "  ~20a ~a~%" "Problem #10:" (euler/p10:solution))
-  (format t "  ~20a ~a~%" "Problem #11:" (euler/p11:solution)))
+  (format t "  ~20a ~a~%" "Problem #11:" (euler/p11:solution))
+  (format t "  ~20a ~a~%" "Problem #12:" (euler/p12:solution)))
