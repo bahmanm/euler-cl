@@ -21,9 +21,11 @@
                                      (:file "p11" :depends-on ("utils"))
                                      (:file "p12")
                                      (:file "p13" :depends-on ("utils"))
+                                     (:file "p14")
                                      (:file "euler"
                                             :depends-on
                                             ("p1" "p2" "p3" "p4" "p5"
                                                   "p6" "p7" "p8" "p9"
-                                                  "p10" "p11" "p12" "p13")))))
+                                                  "p10" "p11" "p12" "p13"
+                                                  "p14")))))
   :in-order-to ((test-op (test-op "euler-tests"))))
