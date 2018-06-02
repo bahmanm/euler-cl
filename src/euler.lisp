@@ -9,12 +9,14 @@
   '(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18))
 
 (defun print-header ()
+  (format t "~%~%")
   (format t " ┏~v@{~A~:*~}~*┓ ~%"
           70 "━")
-  (format t " ┃~70:@<~A~>~A~%" "PROJECT EULER PROBLEMS AND ANSWERS" "┃")
+  (format t " ┃~70:@<~A~>~A~%" "PROJECT EULER ANSWERS" "┃")
   (format t " ┣~v@{~A~:*~}~*┳~v@{~A~:*~}~*┳~v@{~A~:*~}~*┫ ~%"
           12 "━" 34 "━" 22 "━")
-  (format t " ┃ ~10a ┃ ~32a ┃ ~20a ┃ ~%" "PROBLEM #" "ANSWER" "TIME (µs)")
+  (format t " ┃ ~10:@<~A~> ┃ ~32:@<~A~> ┃ ~20:@<~A~> ┃ ~%"
+          "PROBLEM #" "ANSWER" "TIME (µs)")
   (format t " ┣~v@{~A~:*~}~*╇~v@{~A~:*~}~*╇~v@{~A~:*~}~*┫ ~%"
           12 "━" 34 "━" 22 "━"))
 
@@ -27,12 +29,13 @@
     ((format t " ┃ ~10D │ ~32A │ ~20:D ┃ ~%" n answer time))))
 
 (defun print-separator-line ()
-  (format t " ┣~v@{~A~:*~}~*┼~v@{~A~:*~}~*┼~v@{~A~:*~}~*┨ ~%"
+  (format t " ┠~v@{~A~:*~}~*┼~v@{~A~:*~}~*┼~v@{~A~:*~}~*┨ ~%"
           12 "─" 34 "─" 22 "─"))
 
 (defun print-last-line ()
-  (format t " ┗~v@{~A~:*~}~*┷~v@{~A~:*~}~*┷~v@{~A~:*~}~*┛ ~% █~%~%"
-          12 "━" 34 "━" 22 "━"))
+  (format t " ┗~v@{~A~:*~}~*┷~v@{~A~:*~}~*┷~v@{~A~:*~}~*┛~%"
+          12 "━" 34 "━" 22 "━")
+  (format t "~%~%"))
 
 (defmacro run-solution (n)
   (declare (ignore n))
