@@ -28,7 +28,8 @@
                                      (:file "test-p18")
                                      (:file "test-p19")
                                      (:file "test-p20")
-                                     (:file "test-p21"))))
+                                     (:file "test-p21")
+                                     (:file "test-p22"))))
   :perform
   (asdf:test-op (op c)
                 (uiop:symbol-call :fiveam '#:run!
@@ -74,4 +75,6 @@
                 (uiop:symbol-call :fiveam '#:run!
                                   (uiop:find-symbol* '#:p20-test-suite :euler/tests/p20))
                 (uiop:symbol-call :fiveam '#:run!
-                                  (uiop:find-symbol* '#:p21-test-suite :euler/tests/p21))))
+                                  (uiop:find-symbol* '#:p21-test-suite :euler/tests/p21))
+                (uiop:symbol-call :fiveam '#:run!
+                                  (uiop:find-symbol* '#:p22-test-suite :euler/tests/p22))))
