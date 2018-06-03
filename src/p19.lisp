@@ -32,6 +32,10 @@
   (month 1 :type integer :read-only t)
   (weekday 0 :type integer :read-only t))
 
+(defgeneric date-equal (date1 date2))
+(defgeneric date-sundayp (date))
+(defgeneric date-month-inc (date))
+
 (defmethod date-equal ((d1 date) (d2 date))
   (and
    (equal (date-year d1) (date-year d2))
