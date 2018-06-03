@@ -59,3 +59,14 @@
   (is (= -6 (euler/utils::mapmax (lambda (x) (* x x x)) '(-6 1 2) #'<)))
   (is (equal '(1 2 3) (euler/utils::mapmax #'length '((1 2 3) (1) (1 2)) #'>)))
   (is (equal '(1) (euler/utils::mapmax #'length '((1 2 3) (1) (1 2)) #'<))))
+
+(test sum-of-divisors
+  (is (= 1 (euler/utils::sum-of-divisors 1)))
+  (is (= 3 (euler/utils::sum-of-divisors 2)))
+  (is (= 4 (euler/utils::sum-of-divisors 3)))
+  (is (= 12 (euler/utils::sum-of-divisors 6)))
+  (is (= 15 (euler/utils::sum-of-divisors 8)))
+  (is (= 18 (euler/utils::sum-of-divisors 10)))
+  (is (= 24 (euler/utils::sum-of-divisors 14)))
+  (is (= 504 (euler/utils::sum-of-divisors 220)))
+  (is (= 504 (euler/utils::sum-of-divisors 284))))

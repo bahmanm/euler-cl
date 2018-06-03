@@ -3,7 +3,7 @@
 (defpackage euler/utils
   (:use :cl)
   (:export #:hash-table-merge #:string-to-list #:string-to-integer-list
-           #:integer-to-list #:primep #:mapmax))
+           #:integer-to-list #:primep #:mapmax #:sum-of-divisors))
 (in-package :euler/utils)
 
 ;;; Returns a new hashtable containing keys from `ht1 and `ht2` along with
@@ -73,3 +73,29 @@
            (maxcar (x y) (if (funcall compare-func (car x) (car y)) x y)))
     (let ((ll (mapcar #'map-func* ll)))
       (car (cdr (reduce #'maxcar ll))))))
+
+
+(defun div (n d)
+  )
+
+;;; Computes the sum of the all the divisors of N.
+;;; Example: (SUM-OF-DIVISORS 10) -> 8 = 1+2+5
+;;;          (SUM-OF-DIVISORS 14) -> 10 = 1+2+7
+(defun sum-of-divisors (n)
+  (labels ((div (n d) (floor (/ n d))))
+    (let ((sum 1)
+          (n n))
+      (do ((p 2 (if (= p 2) 3 (+ p 2))))
+          ((or (< n 1)
+               (< n (* p p))))
+        (when (zerop (mod n p))
+          (do ((j (* p p) (* j p)))
+              (nil)
+            (setf n (div n p))
+            (when (not (zerop (mod n p)))
+              (setf sum (div (* sum (1- j))
+                             (1- p)))
+              (return)))))
+      (if (> n 1)
+          (* sum (1+ n))
+          sum))))
