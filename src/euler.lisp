@@ -37,26 +37,22 @@
           12 "━" 34 "━" 22 "━")
   (format t "~%~%"))
 
-(defmacro run-solution (n)
-  (declare (ignore n))
-  (let ((exec-time-name (gensym))
-        (result-name (gensym))
-        (timer-name (gensym))
-        (pkg-name (gensym)))
-    `(let ((,exec-time-name 0)
-           (,result-name nil)
-           (,pkg-name (concatenate 'string "euler/p" (format nil "~A" ,n))))
-       (labels ((,timer-name (&key real-time-ms user-run-time-us system-run-time-us
-                                   gc-run-time-ms processor-cycles eval-calls
-                                   lambdas-converted page-faults bytes-consed aborted)
-                  (declare (ignore real-time-ms system-run-time-us gc-run-time-ms
-                                   processor-cycles eval-calls lambdas-converted
-                                   page-faults bytes-consed aborted))
-                  (setf ,exec-time-name user-run-time-us)))
-         (setf ,result-name (funcall (find-symbol "CALL-WITH-TIMING")
-                                     #',timer-name
-                                     (find-symbol "SOLUTION" (string-upcase ,pkg-name)))))
-       (print-answer-line ,n ,result-name ,exec-time-name))))
+(defun run-solution (n)
+  (let ((exec-time 0)
+        (result nil)
+        (pkg (concatenate 'string "euler/p" (format nil "~A" n))))
+    (labels ((timer (&key real-time-ms user-run-time-us system-run-time-us
+                          gc-run-time-ms processor-cycles eval-calls
+                          lambdas-converted page-faults bytes-consed aborted)
+               (declare (ignore real-time-ms system-run-time-us gc-run-time-ms
+                                processor-cycles eval-calls lambdas-converted
+                                page-faults bytes-consed aborted))
+               (setf exec-time user-run-time-us)))
+      (setf result
+            (funcall (find-symbol "CALL-WITH-TIMING")
+                     #'timer
+                     (find-symbol "SOLUTION" (string-upcase pkg))))
+      (print-answer-line n result exec-time))))
 
 (defun solutions ()
   (print-header)
