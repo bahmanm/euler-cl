@@ -7,23 +7,16 @@
 (in-package :euler/p21)
 
 
-(defun sum-divisors (n)
-  (if (= n 1)
-      1
-      (do* ((d (1+ (floor (/ n 2))) (1- d))
-            (result 0 (+ result (if (zerop (mod n d)) d 0))))
-           (nil)
-        (when (= d 1)
-          (return result)))))
-
 (defun find-amicable (n &optional (known-amicables nil))
-  (if (and known-amicables (gethash n known-amicables))
-      (values (gethash n known-amicables) t)
-      (let ((dn (sum-divisors n)))
-        (if (and (not (= n dn))
-                 (= n (sum-divisors dn)))
-            (values dn t)
-            (values nil nil)))))
+  (if (= n 1)
+      (values nil nil)
+      (if (and known-amicables (gethash n known-amicables))
+          (values (gethash n known-amicables) t)
+          (let ((dn (- (euler/utils::sum-of-divisors n) n)))
+            (if (and (not (= n dn))
+                     (= n (- (euler/utils::sum-of-divisors dn) dn)))
+                (values dn t)
+                (values nil nil))))))
 
 (defun find-amicables (limit)
   (do ((result (make-hash-table))

@@ -28,7 +28,7 @@
                                      (:file "p18")
                                      (:file "p19")
                                      (:file "p20" :depends-on ("utils"))
-                                     (:file "p21")
+                                     (:file "p21" :depends-on ("utils"))
                                      (:file "p22")
                                      (:file "euler"
                                             :depends-on

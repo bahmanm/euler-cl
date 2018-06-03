@@ -13,17 +13,6 @@
 (in-suite p21-test-suite)
 
 
-(test sum-divisors
-  (is (= 1 (euler/p21::sum-divisors 1)))
-  (is (= 1 (euler/p21::sum-divisors 2)))
-  (is (= 1 (euler/p21::sum-divisors 3)))
-  (is (= 6 (euler/p21::sum-divisors 6)))
-  (is (= 7 (euler/p21::sum-divisors 8)))
-  (is (= 8 (euler/p21::sum-divisors 10)))
-  (is (= 10 (euler/p21::sum-divisors 14)))
-  (is (= 284 (euler/p21::sum-divisors 220)))
-  (is (= 220 (euler/p21::sum-divisors 284))))
-
 (test find-amicable
   (multiple-value-bind (n existsp) (euler/p21::find-amicable 1)
     (is-false existsp)
