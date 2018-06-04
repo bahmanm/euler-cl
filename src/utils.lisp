@@ -3,7 +3,8 @@
 (defpackage euler/utils
   (:use :cl)
   (:export #:hash-table-merge #:string-to-list #:string-to-integer-list
-           #:integer-to-list #:primep #:mapmax #:sum-of-divisors))
+           #:integer-to-list #:primep #:mapmax #:sum-of-divisors
+           #:vector-to-hash-table #:hash-table-equal-p))
 (in-package :euler/utils)
 
 ;;; Returns a new hashtable containing keys from `ht1 and `ht2` along with
@@ -74,10 +75,6 @@
     (let ((ll (mapcar #'map-func* ll)))
       (car (cdr (reduce #'maxcar ll))))))
 
-
-(defun div (n d)
-  )
-
 ;;; Computes the sum of the all the divisors of N.
 ;;; Example: (SUM-OF-DIVISORS 10) -> 8 = 1+2+5
 ;;;          (SUM-OF-DIVISORS 14) -> 10 = 1+2+7
@@ -99,3 +96,28 @@
       (if (> n 1)
           (* sum (1+ n))
           sum))))
+
+;;; Converts VECTOR into a HASH-TABLE. Each element of VECTOR is a key in
+;;; the result associated with T.
+;;; Example: (VECTOR-TO-HASH-TABLE #(1 2)) -> HASH-TABLE(1 -> T, 2 -> T)
+;;;
+(defun vector-to-hash-table (vector)
+  (do* ((i-max (length vector))
+        (i 0 (1+ i))
+        (result (make-hash-table)))
+       ((= i i-max) result)
+    (setf (gethash (elt vector i) result)
+          t)))
+
+;;; HT1 and HT2 are equal if and only if they have the same set of keys
+;;; associated with the same set of values.
+;;;
+(defun hash-table-equal-p (ht1 ht2)
+  (if (= (hash-table-count ht1) (hash-table-count ht2))
+      (let ((equal-p t))
+        (maphash (lambda (k v)
+                   (unless (equal v (gethash k ht2))
+                     (setf equal-p nil)))
+                 ht1)
+        equal-p)
+      nil))

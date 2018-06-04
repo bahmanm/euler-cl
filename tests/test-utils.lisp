@@ -70,3 +70,66 @@
   (is (= 24 (euler/utils::sum-of-divisors 14)))
   (is (= 504 (euler/utils::sum-of-divisors 220)))
   (is (= 504 (euler/utils::sum-of-divisors 284))))
+
+(test hash-table-equal-p
+  (is-true (euler/utils:hash-table-equal-p
+            (make-hash-table)
+            (make-hash-table)))
+                                        ;
+  (let ((ht1 (make-hash-table))
+        (ht2 (make-hash-table)))
+    (setf (gethash 10 ht1) t)
+    (setf (gethash 10 ht2) t)
+    (is-true (euler/utils:hash-table-equal-p
+              ht1
+              ht1))
+    (is-true (euler/utils:hash-table-equal-p
+              ht1
+              ht2)))
+                                        ;
+  (let ((ht1 (make-hash-table))
+        (ht2 (make-hash-table)))
+    (setf (gethash 1 ht1) t)
+    (setf (gethash 1 ht2) 1)
+    (is-false (euler/utils:hash-table-equal-p
+              ht1
+              ht2)))
+                                        ;
+  (let ((ht1 (make-hash-table))
+        (ht2 (make-hash-table)))
+    (setf (gethash 1 ht1) t)
+    (setf (gethash 1 ht2) t)
+    (setf (gethash 2 ht2) t)
+    (is-false (euler/utils:hash-table-equal-p
+              ht1
+              ht2))
+    (setf (gethash 2 ht1) t)
+    (is-true (euler/utils:hash-table-equal-p
+              ht1
+              ht2))))
+
+(test vector-to-hash-table
+  (is-true (euler/utils::hash-table-equal-p
+            (make-hash-table)
+            (euler/utils::vector-to-hash-table #())))
+                                        ;
+  (let ((expected-tbl (make-hash-table)))
+    (setf (gethash 10 expected-tbl) t)
+    (is-true (euler/utils:hash-table-equal-p
+              expected-tbl
+              (euler/utils::vector-to-hash-table #(10)))))
+                                        ;
+  (let ((expected-tbl (make-hash-table)))
+    (setf (gethash 1 expected-tbl) t)
+    (setf (gethash 2 expected-tbl) t)
+    (is-true (euler/utils:hash-table-equal-p
+              expected-tbl
+              (euler/utils::vector-to-hash-table #(1 2)))))
+                                        ;
+  (let ((expected-tbl (make-hash-table)))
+    (setf (gethash 1 expected-tbl) t)
+    (setf (gethash 2 expected-tbl) t)
+    (setf (gethash 3 expected-tbl) t)
+    (is-true (euler/utils:hash-table-equal-p
+              expected-tbl
+              (euler/utils::vector-to-hash-table #(1 2 3))))))
