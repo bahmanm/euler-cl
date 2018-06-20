@@ -51,7 +51,7 @@
 ;;;
 (defun primep (n)
   (cond
-    ((= n 1) nil)
+    ((< n 2) nil)
     ((member n '(2 3 5)) t)
     ((zerop (mod n 2)) nil)
     ((zerop (mod n 3)) nil)

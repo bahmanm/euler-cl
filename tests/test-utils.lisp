@@ -49,10 +49,15 @@
 
 (test primep
   (is-false (euler/utils::primep 1))
+  (is-false (euler/utils::primep -1))
   (is-true (euler/utils::primep 2))
+  (is-false (euler/utils::primep -2))
   (is-true (euler/utils::primep 3))
+  (is-false (euler/utils::primep -3))
   (is-true (euler/utils::primep 17))
-  (is-false (euler/utils::primep 15)))
+  (is-false (euler/utils::primep -17))
+  (is-false (euler/utils::primep 15))
+  (is-false (euler/utils::primep -15)))
 
 (test mapmax
   (is (= 2 (euler/utils::mapmax (lambda (x) (* x x x)) '(-6 1 2))))
