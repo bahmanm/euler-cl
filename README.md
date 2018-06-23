@@ -10,7 +10,7 @@ for development and testing.*
 # Dependencies #
 
 * [FiveAM](https://common-lisp.net/project/fiveam/) for testing
-* [cl-ppcre](http://edicl.github.io/cl-ppcre/) fore pattern matching
+* [cl-ppcre](http://edicl.github.io/cl-ppcre/) for pattern matching
 
 Installing the dependencies varies according to your library/package
 manager of choice. For example, using [QuickLisp](https://www.quicklisp.org/beta/)
