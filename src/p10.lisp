@@ -7,13 +7,14 @@
 (in-package :euler/p10)
 
 
-(defun sum-all-primes (from to &optional (sum 0) (current-number from))
-  (if (> current-number to)
-      sum
-      (let ((sum (+ sum (if (euler/utils:primep current-number)
-                            current-number
-                            0))))
-          (sum-all-primes from to sum (1+ current-number)))))
-
 (defun solution (&optional (limit 2000000))
-  (sum-all-primes 0 limit))
+  (cond
+    ((= limit 2) 2)
+    ((< limit 2) 0)
+    ((do* ((n 3
+              (+ n 2))
+           (result 2))
+          ((> n limit) result)
+       (when (euler/utils:primep n)
+         (setf result
+               (+ result n)))))))
