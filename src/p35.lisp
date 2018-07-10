@@ -27,23 +27,10 @@
                       (+ result (* digit power-of-10))))
              ((= counter 0) result)))))
 
-(defun integer-to-list (n)
-  (do* ((digit-count (1+ (floor (log n 10))))
-        (result (make-array digit-count :element-type 'integer))
-        (i (1- digit-count)
-           (1- i))
-        (n n))
-       ((< i 0) result)
-    (multiple-value-bind (d r)
-        (floor n 10)
-      (setf (aref result i)
-            r)
-      (setf n d))))
-
 (defun circular-prime-p (n)
   (if (= n 2)
       t
-      (do* ((digits (integer-to-list n))
+      (do* ((digits (euler/utils:integer-to-array n))
             (digit-count (length digits))
             (i 0
                (1+ i))

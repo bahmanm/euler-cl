@@ -24,12 +24,6 @@
   (is (= 210 (euler/p35::array-rotate-and-convert-to-integer #(1 0 2) 2)))
   (is (= 102 (euler/p35::array-rotate-and-convert-to-integer #(1 0 2) 3))))
 
-(test integer-to-list
-  (is (equalp #(1) (euler/p35::integer-to-list 1)))
-  (is (equalp #(1 2) (euler/p35::integer-to-list 12)))
-  (is (equalp #(1 2 0) (euler/p35::integer-to-list 120)))
-  (is (equalp #(1 3 4 5) (euler/p35::integer-to-list 1345))))
-
 (test circular-prime-p
   (is-true (euler/p35::circular-prime-p 2))
   (is-true (euler/p35::circular-prime-p 7))

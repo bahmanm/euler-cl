@@ -4,7 +4,8 @@
   (:use :cl)
   (:export #:hash-table-merge #:string-to-list #:string-to-integer-list
            #:integer-to-list #:primep #:mapmax #:sum-of-divisors
-           #:vector-to-hash-table #:hash-table-equal-p))
+           #:vector-to-hash-table #:hash-table-equal-p
+           #:integer-to-array))
 (in-package :euler/utils)
 
 ;;; Returns a new hashtable containing keys from `ht1 and `ht2` along with
@@ -26,7 +27,6 @@
 (defun string-to-list (s)
   (map 'list #'string s))
 
-
 ;;; Converts S to a list of integers where each character is parsed into
 ;;; its integer value.
 ;;; Example: (STRING-TO-INTEGER-LIST "123") -> (1 2 3)
@@ -45,6 +45,23 @@
                          (floor n 10)
                        (number-to-list divisor (cons remainder result))))))
         (number-to-list n '()))))
+
+;;; Converts a given number to an array of digits preserving the order.
+;;; Example: (INTEGER-TO-ARRAY 123) -> #(1 2 3)
+;;;
+(defun integer-to-array (n)
+  (if (zerop n) #(0)
+      (do* ((digit-count (1+ (floor (log n 10))))
+            (result (make-array digit-count :element-type 'integer))
+            (i (1- digit-count)
+               (1- i))
+            (n n))
+           ((< i 0) result)
+        (multiple-value-bind (d r)
+            (floor n 10)
+          (setf (aref result i)
+                r)
+          (setf n d)))))
 
 ;;; Determines whether a natural number is prime.
 ;;; Example: (PRIMEP 7) -> T  ; (PRIMEP 24) -> NIL

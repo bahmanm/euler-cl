@@ -42,10 +42,17 @@
   (is (equal '(1) (euler/utils:string-to-integer-list "1")))
   (is (equal '(1 2 3) (euler/utils:string-to-integer-list "123"))))
 
-(test number-to-list
+(test integer-to-list
   (is (equal '(0) (euler/utils:integer-to-list 0)))
   (is (equal '(1 2 3) (euler/utils:integer-to-list 123)))
   (is (equal '(1 2 3 4 5 6 7 8 9 0) (euler/utils:integer-to-list 1234567890))))
+
+(test integer-to-array
+  (is (equalp #(0) (euler/utils::integer-to-array 0)))
+  (is (equalp #(1) (euler/utils::integer-to-array 1)))
+  (is (equalp #(1 2) (euler/utils::integer-to-array 12)))
+  (is (equalp #(1 2 0) (euler/utils::integer-to-array 120)))
+  (is (equalp #(1 3 4 5) (euler/utils::integer-to-array 1345))))
 
 (test primep
   (is-false (euler/utils::primep 1))
