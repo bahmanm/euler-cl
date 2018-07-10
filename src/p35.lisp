@@ -41,18 +41,25 @@
       (setf n d))))
 
 (defun circular-prime-p (n)
-  (do* ((digits (integer-to-list n))
-        (digit-count (length digits))
-        (i 0 (1+ i))
-        (n n
-           (array-rotate-and-convert-to-integer digits i))
-        (primep (euler/utils:primep n)
-                (euler/utils:primep n)))
-       ((or (not primep) (= i (1- digit-count))) primep)))
+  (if (= n 2)
+      t
+      (do* ((digits (integer-to-list n))
+            (digit-count (length digits))
+            (i 0
+               (1+ i))
+            (n n
+               (array-rotate-and-convert-to-integer digits i))
+            (primep (and (every #'oddp digits) (euler/utils:primep n))
+                    (euler/utils:primep n)))
+           ((or (not primep) (= i (1- digit-count))) primep))))
 
 (defun solution (&optional (limit 1000000))
-  (do* ((i 2
-           (1+ i))
-        (count 1
-               (+ count (if (circular-prime-p i) 1 0))))
-       ((= i limit) count)))
+  (if (= limit 2)
+      1
+      (do* ((i 3
+               (+ i 2))
+            (count 1))
+           ((> i limit) count)
+        (when (circular-prime-p i)
+          (setf count
+                (+ count 1))))))
