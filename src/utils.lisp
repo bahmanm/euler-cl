@@ -72,14 +72,14 @@
     ((member n '(2 3 5)) t)
     ((zerop (mod n 2)) nil)
     ((zerop (mod n 3)) nil)
-    ((let ((max-factor (ffloor (sqrt n))))
-       (labels ((primep (current-factor)
-                  (cond
-                    ((> current-factor max-factor) t)
-                    ((zerop (mod n current-factor)) nil)
-                    ((zerop (mod n (+ current-factor 2))) nil)
-                    ((primep (+ current-factor 6))))))
-         (primep 5))))))
+    ((zerop (mod n 5)) nil)
+    ((do* ((max-factor (ffloor (sqrt n)))
+           (current-factor 5
+                           (+ 6 current-factor)))
+          ((> current-factor max-factor) t)
+       (when (or (zerop (mod n current-factor))
+                 (zerop (mod n (+ current-factor 2))))
+         (return nil))))))
 
 ;;; Maps all the elements of LL using MAP-FUNC and finds the maximum mapped
 ;;; element using COMPARE-FUNC. Returns only the original element.
