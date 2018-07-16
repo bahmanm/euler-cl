@@ -43,6 +43,7 @@
                                      (:file "p34")
                                      (:file "p35" :depends-on ("utils"))
                                      (:file "p36" :depends-on ("utils"))
+                                     (:file "p37" :depends-on ("utils"))
                                      (:file "euler"
                                             :depends-on
                                             ("p1" "p2" "p3" "p4" "p5"
@@ -53,5 +54,5 @@
                                                   "p22" "p23" "p25" "p26"
                                                   "p27" "p28" "p29" "p30"
                                                   "p31" "p32" "p33" "p34"
-                                                  "p35" "p36")))))
+                                                  "p35" "p36" "p37")))))
   :in-order-to ((test-op (test-op "euler-tests"))))
