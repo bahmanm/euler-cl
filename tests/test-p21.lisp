@@ -31,11 +31,16 @@
     (is (= 220 n))))
 
 (test find-amicables
-  (is (equal '() (euler/p21::find-amicables 10)))
-  (is (equal '() (euler/p21::find-amicables 100)))
-  (is (equal '(284 220) (euler/p21::find-amicables 300)))
-  (is (equal '(2924 2620 1210 1184 284 220) (euler/p21::find-amicables 3000))))
-
+  (is (equal '()
+             (euler/p21::find-amicables 10)))
+  (is (equal '()
+             (euler/p21::find-amicables 100)))
+  (is (equal '(284 220)
+             (sort (euler/p21::find-amicables 300)
+                   #'>)))
+  (is (equal '(2924 2620 1210 1184 284 220)
+             (sort (euler/p21::find-amicables 3000)
+                   #'>))))
 (test solution
   (is (= 0 (euler/p21:solution 10)))
   (is (= 504 (euler/p21:solution 300)))
