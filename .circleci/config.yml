@@ -31,13 +31,14 @@ jobs:
             wget -O /tmp/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp
             && sbcl
             --load /tmp/quicklisp.lisp
-            --eval "(quicklisp-quickstart:install)"
-            --eval "(ql:quickload :asdf)"
-            --eval "(asdf:load-system :asdf)"
-            --eval "(ql:quickload :alexandria)"
-            --eval "(ql:quickload :fiveam)"
-            --eval "(ql:quickload :cl-ppcre)"
-            --eval "(exit)"
+            --eval "(progn
+                      (quicklisp-quickstart:install)
+                      (ql:quickload :asdf)
+                      (asdf:load-system :asdf)
+                      (ql:quickload :alexandria)
+                      (ql:quickload :fiveam)
+                      (ql:quickload :cl-ppcre)
+                      (exit))"
             && echo '(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname))))' > ~/.sbclrc
             && echo '  (when (probe-file quicklisp-init) (load quicklisp-init)))' >> ~/.sbclrc
             && echo '(ql:quickload :alexandria) (ql:quickload :fiveam) (ql:quickload :cl-ppcre)' >> ~/.sbclrc
