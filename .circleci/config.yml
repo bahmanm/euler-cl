@@ -32,6 +32,7 @@ jobs:
             --load /tmp/quicklisp.lisp
             --eval "(quicklisp-quickstart:install)"
             --eval "(ql:quickload :asdf)"
+            --eval "(ql:quickload :alexandria)"
             --eval "(ql:quickload :fiveam)"
             --eval "(ql:quickload :cl-ppcre)"
             --eval "(exit)"
