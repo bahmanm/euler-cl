@@ -27,11 +27,12 @@ jobs:
       - run:
           name: Install the Lisp packages
           command: >-
-            sbcl \
-            --load quicklisp.lisp \
-            --eval "(quicklisp-quickstart:install)" \
-            --eval "(ql:quickload :fiveam)" \
-            --eval "(ql:quickload :cl-ppcre)" \
+            sbcl
+            --load quicklisp.lisp
+            --eval "(quicklisp-quickstart:install)"
+            --eval "(ql:quickload :asdf)"
+            --eval "(ql:quickload :fiveam)"
+            --eval "(ql:quickload :cl-ppcre)"
             --eval "(exit)"
 
       - checkout
