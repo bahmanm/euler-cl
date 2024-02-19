@@ -10,6 +10,7 @@ jobs:
       - image: opensuse/tumbleweed:latest
         environment:
           LANG: en_US.UTF-8
+    resource_class: medium
 
     working_directory: ~/euler-cl
 
@@ -31,13 +32,14 @@ jobs:
             && sbcl
             --load /tmp/quicklisp.lisp
             --eval "(quicklisp-quickstart:install)"
-            --eval "(ql:quickload :asdf)"
+            --eval "(ql:quickload :asdf) (asdf:load-system :asdf)"
             --eval "(ql:quickload :alexandria)"
             --eval "(ql:quickload :fiveam)"
             --eval "(ql:quickload :cl-ppcre)"
             --eval "(exit)"
             && echo '(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname))))' > ~/.sbclrc
-            && echo '(when (probe-file quicklisp-init) (load quicklisp-init)))' >> ~/.sbclrc
+            && echo '  (when (probe-file quicklisp-init) (load quicklisp-init)))' >> ~/.sbclrc
+            && echo '(ql:quickload :alexandria) (ql:quickload :fiveam) (ql:quickload :cl-ppcre)' >> ~/.sbclrc
 
       - checkout
 
