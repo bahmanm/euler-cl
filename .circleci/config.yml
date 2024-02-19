@@ -40,3 +40,9 @@ jobs:
           name: Run the tests
           command: >-
             make test
+
+
+workflows:
+  build_test:
+    jobs:
+      - test
