@@ -34,8 +34,13 @@ jobs:
             --eval "(ql:quickload :asdf)"
             --eval "(ql:quickload :fiveam)"
             --eval "(ql:quickload :cl-ppcre)"
-            --eval "(ql:add-to-init-file)"
             --eval "(exit)"
+            && echo > ~/.sbclrc <<EOF
+            (let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                                   (user-homedir-pathname))))
+              (when (probe-file quicklisp-init)
+                (load quicklisp-init)))
+            EOF
 
       - checkout
 
