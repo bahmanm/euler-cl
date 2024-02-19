@@ -1,9 +1,8 @@
 ;;;; Author: Bahman Movaqar<Bahman@BahmanM.com>
 ;;;;
-(asdf:oos 'asdf:load-op :FiveAM)
 (defpackage euler/tests/utils
   (:use :cl :it.bese.fiveam)
-  (:export #:utils-test-suite))
+  (:export :utils-test-suite :|utils-test-suite|))
 (in-package :euler/tests/utils)
 
 (def-suite
@@ -14,7 +13,9 @@
 (test hash-table-merge
   (let ((ht1 (make-hash-table))
         (ht2 (make-hash-table))
-        (merger #'(lambda (old new) new)))
+        (merger #'(lambda (old new)
+                    (declare (ignore old))
+                    new)))
     (setf (gethash 'a ht1) 10
           (gethash 'b ht1) 20
           (gethash 'c ht1) 30
