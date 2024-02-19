@@ -26,22 +26,12 @@ jobs:
             && { source /etc/profile || true; }
 
       - run:
-          name: Install the Lisp packages
+          name: Install Quicklisp
           command: |-
             wget -O /tmp/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp \
-            && sbcl \
-            --load /tmp/quicklisp.lisp \
-            --eval "(progn
-                      (quicklisp-quickstart:install)
-                      (ql:quickload :asdf)
-                      (asdf:load-system :asdf)
-                      (ql:quickload :alexandria)
-                      (ql:quickload :fiveam)
-                      (ql:quickload :cl-ppcre)
-                      (exit))" \
-            && echo '(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname))))' > ~/.sbclrc \
-            && echo '  (when (probe-file quicklisp-init) (load quicklisp-init)))' >> ~/.sbclrc \
-            && echo '(ql:quickload :alexandria) (ql:quickload :fiveam) (ql:quickload :cl-ppcre)' >> ~/.sbclrc
+            && sbcl --load /tmp/quicklisp.lisp \
+                    --eval "(progn (quicklisp-quickstart:install) (exit))" \
+            && echo '(load "~/quicklisp/setup.lisp")' > ~/.sbclrc
 
       - checkout
 
