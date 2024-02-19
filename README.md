@@ -1,4 +1,4 @@
-# Project Euler in Common Lisp #
+# Project Euler in Common Lisp [![CircleCI](https://dl.circleci.com/status-badge/img/circleci/UMKeFZ8ns9T9vi5aquTfVT/CiytfQ2nzMkeYAKL8i7End/tree/master.svg?style=shield&circle-token=fb5d2555b905c322e658371ecb83f9250ed222d6)](https://dl.circleci.com/status-badge/redirect/circleci/UMKeFZ8ns9T9vi5aquTfVT/CiytfQ2nzMkeYAKL8i7End/tree/master)
 
 Solutions to [Project Euler](https://projecteuler.net/) problems in
 [Common Lisp](https://common-lisp.net/).
