@@ -52,7 +52,13 @@ lisp : bmakelib.error-if-blank( sbcl_snippet )
 lisp :
 	snippet_file="$${TMPDIR:-/tmp}/$$(mktemp euler-cl-XXXXXX)" \
 	&& echo "$${sbcl_snippet}" > "$${snippet_file}" \
-	&& $(lisp.implementation) --load "$${snippet_file}"
+	&& $(lisp.implementation) \
+		--eval "(ql:quickload :asdf)" \
+		--eval "(asdf:load-system :asdf)" \
+		--eval "(ql:quickload :alexandria)" \
+		--eval "(ql:quickload :fiveam)" \
+		--eval "(ql:quickload :cl-ppcre)" \
+		--load "$${snippet_file}"
 
 
 ####################################################################################################
