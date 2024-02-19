@@ -41,12 +41,27 @@
   (let ((exec-time 0)
         (result nil)
         (pkg (concatenate 'string "euler/p" (format nil "~A" n))))
-    (labels ((timer (&key real-time-ms user-run-time-us system-run-time-us
-                          gc-run-time-ms processor-cycles eval-calls
-                          lambdas-converted page-faults bytes-consed aborted)
-               (declare (ignore real-time-ms system-run-time-us gc-run-time-ms
-                                processor-cycles eval-calls lambdas-converted
-                                page-faults bytes-consed aborted))
+    (labels ((timer (&key
+                       user-run-time-us
+                       system-run-time-us
+                       real-time-ms
+                       gc-run-time-ms
+                       gc-real-time-ms
+                       processor-cycles
+                       eval-calls
+                       lambdas-converted
+                       page-faults
+                       bytes-consed
+                       aborted)
+               (declare (ignore system-run-time-us
+                                real-time-ms
+                                gc-run-time-ms
+                                processor-cycles
+                                eval-calls
+                                lambdas-converted
+                                page-faults
+                                bytes-consed
+                                aborted))
                (setf exec-time user-run-time-us)))
       (setf result
             (funcall (find-symbol "CALL-WITH-TIMING")
