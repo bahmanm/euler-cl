@@ -1,6 +1,5 @@
 ;;;; Author: Bahman Movaqar<Bahman@BahmanM.com>
 ;;;;
-(asdf:oos 'asdf:load-op :FiveAM)
 (defpackage euler/tests/p20
   (:use :cl :it.bese.fiveam
         :euler/p20)
