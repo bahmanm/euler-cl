@@ -32,7 +32,8 @@ jobs:
             && sbcl
             --load /tmp/quicklisp.lisp
             --eval "(quicklisp-quickstart:install)"
-            --eval "(ql:quickload :asdf) (asdf:load-system :asdf)"
+            --eval "(ql:quickload :asdf)"
+            --eval "(asdf:load-system :asdf)"
             --eval "(ql:quickload :alexandria)"
             --eval "(ql:quickload :fiveam)"
             --eval "(ql:quickload :cl-ppcre)"
