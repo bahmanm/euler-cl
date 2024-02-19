@@ -20,20 +20,21 @@ jobs:
           command: >-
             zypper --non-interactive refresh
             && zypper --non-interactive install sbcl make perl wget
-            && rpm --install --nosignature \
-                 https://github.com/bahmanm/bmakelib/releases/download/v0.7.0/bmakelib-0.7.0-1.1.noarch.rpm \
+            && rpm --install --nosignature
+                 https://github.com/bahmanm/bmakelib/releases/download/v0.7.0/bmakelib-0.7.0-1.1.noarch.rpm
             && { source /etc/profile || true; }
 
       - run:
           name: Install the Lisp packages
           command: >-
-            wget https://beta.quicklisp.org/quicklisp.lisp
+            wget -O /tmp/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp
             && sbcl
-            --load quicklisp.lisp
+            --load /tmp/quicklisp.lisp
             --eval "(quicklisp-quickstart:install)"
             --eval "(ql:quickload :asdf)"
             --eval "(ql:quickload :fiveam)"
             --eval "(ql:quickload :cl-ppcre)"
+            --eval "(ql:add-to-init-file)"
             --eval "(exit)"
 
       - checkout
