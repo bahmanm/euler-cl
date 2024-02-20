@@ -14,7 +14,7 @@ euler-cl's build is facilitated by GNU Make.
 
 #### To Run
 
-Simply run `make run` to execute all the solutions and view the answers in a nicely tabulated formated.
+Simply run `make run` to execute all the solutions and view the answers in a nicely tabulated format.
 
 For example:
 
