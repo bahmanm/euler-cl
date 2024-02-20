@@ -1,9 +1,9 @@
 ;;;; Author: Bahman Movaqar<Bahman@BahmanM.com>
 ;;;;
-(defpackage euler/p8
+(defpackage euler/p08
   (:use :cl)
   (:export #:solution))
-(in-package :euler/p8)
+(in-package :euler/p08)
 
 (defvar *the-number*
   (with-open-file (stream "./src/res/p8.txt")

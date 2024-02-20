@@ -8,15 +8,15 @@
   :serial t
   :components ((:module "src"
                 :components ((:file "utils")
-                             (:file "p1")
-                             (:file "p2")
-                             (:file "p3")
-                             (:file "p4")
-                             (:file "p5" :depends-on ("utils"))
-                             (:file "p6")
-                             (:file "p7")
-                             (:file "p8")
-                             (:file "p9")
+                             (:file "p01")
+                             (:file "p02")
+                             (:file "p03")
+                             (:file "p04")
+                             (:file "p05" :depends-on ("utils"))
+                             (:file "p06")
+                             (:file "p07")
+                             (:file "p08")
+                             (:file "p09")
                              (:file "p10" :depends-on ("utils"))
                              (:file "p11" :depends-on ("utils"))
                              (:file "p12")
@@ -46,13 +46,13 @@
                              (:file "p37" :depends-on ("utils"))
                              (:file "euler"
                               :depends-on
-                              ("p1" "p2" "p3" "p4" "p5"
-                                    "p6" "p7" "p8" "p9"
-                                    "p10" "p11" "p12" "p13"
-                                    "p14" "p15" "p16" "p17"
-                                    "p18" "p19" "p20" "p21"
-                                    "p22" "p23" "p25" "p26"
-                                    "p27" "p28" "p29" "p30"
-                                    "p31" "p32" "p33" "p34"
-                                    "p35" "p36" "p37")))))
+                              ("p01" "p02" "p03" "p04" "p05"
+                                     "p06" "p07" "p08" "p09"
+                                     "p10" "p11" "p12" "p13"
+                                     "p14" "p15" "p16" "p17"
+                                     "p18" "p19" "p20" "p21"
+                                     "p22" "p23" "p25" "p26"
+                                     "p27" "p28" "p29" "p30"
+                                     "p31" "p32" "p33" "p34"
+                                     "p35" "p36" "p37")))))
   :in-order-to ((test-op (test-op "euler-tests"))))

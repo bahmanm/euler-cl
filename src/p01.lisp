@@ -1,10 +1,10 @@
 ;;;; https://projecteuler.net/problem=1
 ;;;; Author: Bahman Movaqar<Bahman@BahmanM.com>
 ;;;;
-(defpackage euler/p1
+(defpackage euler/p01
   (:use :cl)
   (:export #:solution))
-(in-package :euler/p1)
+(in-package :euler/p01)
 
 
 (defun multiple-of-3-or-5p (n)

@@ -1,10 +1,10 @@
 ;;;; https://projecteuler.net/problem=3
 ;;;; Author: Bahman Movaqar<Bahman@BahmanM.com>
 ;;;;
-(defpackage euler/p3
+(defpackage euler/p03
   (:use :cl)
   (:export #:solution))
-(in-package :euler/p3)
+(in-package :euler/p03)
 
 (defun solution* (n current-factor max-factor)
   (if (> current-factor n)

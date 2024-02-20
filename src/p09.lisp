@@ -3,10 +3,10 @@
 ;;;; The implementation is just a translation of the algorithm described
 ;;;; in https://www.mathblog.dk/pythagorean-triplets/
 ;;;;
-(defpackage euler/p9
+(defpackage euler/p09
   (:use :cl)
   (:export #:solution))
-(in-package :euler/p9)
+(in-package :euler/p09)
 
 
 (defun find-k (m s k)

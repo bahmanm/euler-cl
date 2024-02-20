@@ -1,9 +1,9 @@
 ;;;; Author: Bahman Movaqar<Bahman@BahmanM.com>
 ;;;;
-(defpackage euler/p4
+(defpackage euler/p04
   (:use :cl)
   (:export #:solution))
-(in-package :euler/p4)
+(in-package :euler/p04)
 
 
 (defun palindromic-numberp (n)

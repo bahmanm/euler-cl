@@ -1,10 +1,10 @@
 ;;;; https://projecteuler.net/problem=2
 ;;;; Author: Bahman Movaqar<Bahman@BahmanM.com>
 ;;;;
-(defpackage euler/p2
+(defpackage euler/p02
   (:use :cl)
   (:export #:solution))
-(in-package :euler/p2)
+(in-package :euler/p02)
 
 (defun sum-even-terms (term1 term2 term-limit sum)
   (let ((term3 (+ term1 term2)))

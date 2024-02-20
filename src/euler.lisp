@@ -40,7 +40,7 @@
 (defun run-solution (n)
   (let ((exec-time 0)
         (result nil)
-        (pkg (concatenate 'string "euler/p" (format nil "~A" n))))
+        (pkg (concatenate 'string "euler/p" (format nil "~2,'0d" n))))
     (labels ((timer (&key
                        user-run-time-us
                        system-run-time-us
