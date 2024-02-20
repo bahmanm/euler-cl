@@ -1,9 +1,9 @@
 ;;;; Author: Bahman Movaqar<Bahman@BahmanM.com>
 ;;;;
-(defpackage euler/p7
+(defpackage euler/p07
   (:use :cl)
   (:export #:solution))
-(in-package :euler/p7)
+(in-package :euler/p07)
 
 
 (defun nth-prime (n)

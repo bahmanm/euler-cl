@@ -1,9 +1,9 @@
 ;;;; Author: Bahman Movaqar<Bahman@BahmanM.com>
 ;;;;
-(defpackage euler/p6
+(defpackage euler/p06
   (:use :cl)
   (:export #:solution))
-(in-package :euler/p6)
+(in-package :euler/p06)
 
 
 (defun sum-1-to-n (n)

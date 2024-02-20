@@ -1,9 +1,9 @@
 ;;;; Author: Bahman Movaqar<Bahman@BahmanM.com>
 ;;;;
-(defpackage euler/p5
+(defpackage euler/p05
   (:use :cl :euler/utils)
   (:export #:solution))
-(in-package :euler/p5)
+(in-package :euler/p05)
 
 
 (defun prime-factors (n)

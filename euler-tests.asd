@@ -7,15 +7,15 @@
   :serial t
   :components ((:module "tests"
                 :components ((:file "test-utils")
-                             (:file "test-p1")
-                             (:file "test-p2")
-                             (:file "test-p3")
-                             (:file "test-p4")
-                             (:file "test-p5")
-                             (:file "test-p6")
-                             (:file "test-p7")
-                             (:file "test-p8")
-                             (:file "test-p9")
+                             (:file "test-p01")
+                             (:file "test-p02")
+                             (:file "test-p03")
+                             (:file "test-p04")
+                             (:file "test-p05")
+                             (:file "test-p06")
+                             (:file "test-p07")
+                             (:file "test-p08")
+                             (:file "test-p09")
                              (:file "test-p10")
                              (:file "test-p11")
                              (:file "test-p12")
@@ -48,24 +48,24 @@
                          (progn
                            (fiveam:run (uiop:find-symbol* :utils-test-suite
                                                           :euler/tests/utils))
-                           (fiveam:run (uiop:find-symbol* :p1-test-suite
-                                                          :euler/tests/p1))
-                           (fiveam:run (uiop:find-symbol* :p2-test-suite
-                                                          :euler/tests/p2))
-                           (fiveam:run (uiop:find-symbol* :p3-test-suite
-                                                          :euler/tests/p3))
-                           (fiveam:run (uiop:find-symbol* :p4-test-suite
-                                                          :euler/tests/p4))
-                           (fiveam:run (uiop:find-symbol* :p5-test-suite
-                                                          :euler/tests/p5))
-                           (fiveam:run (uiop:find-symbol* :p6-test-suite
-                                                          :euler/tests/p6))
-                           (fiveam:run (uiop:find-symbol* :p7-test-suite
-                                                          :euler/tests/p7))
-                           (fiveam:run (uiop:find-symbol* :p8-test-suite
-                                                          :euler/tests/p8))
-                           (fiveam:run (uiop:find-symbol* :p9-test-suite
-                                                          :euler/tests/p9))
+                           (fiveam:run (uiop:find-symbol* :p01-test-suite
+                                                          :euler/tests/p01))
+                           (fiveam:run (uiop:find-symbol* :p02-test-suite
+                                                          :euler/tests/p02))
+                           (fiveam:run (uiop:find-symbol* :p03-test-suite
+                                                          :euler/tests/p03))
+                           (fiveam:run (uiop:find-symbol* :p04-test-suite
+                                                          :euler/tests/p04))
+                           (fiveam:run (uiop:find-symbol* :p05-test-suite
+                                                          :euler/tests/p05))
+                           (fiveam:run (uiop:find-symbol* :p06-test-suite
+                                                          :euler/tests/p06))
+                           (fiveam:run (uiop:find-symbol* :p07-test-suite
+                                                          :euler/tests/p07))
+                           (fiveam:run (uiop:find-symbol* :p08-test-suite
+                                                          :euler/tests/p08))
+                           (fiveam:run (uiop:find-symbol* :p09-test-suite
+                                                          :euler/tests/p09))
                            (fiveam:run (uiop:find-symbol* :p10-test-suite
                                                           :euler/tests/p10))
                            (fiveam:run (uiop:find-symbol* :p11-test-suite
