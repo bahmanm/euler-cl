@@ -42,8 +42,7 @@
                              (:file "test-p34")
                              (:file "test-p35")
                              (:file "test-p36")
-                             (:file "test-p37")
-                             )))
+                             (:file "test-p37"))))
   :perform (asdf:test-op (op system)
                          (progn
                            (fiveam:run (uiop:find-symbol* :utils-test-suite
