@@ -56,6 +56,7 @@
                (declare (ignore system-run-time-us
                                 real-time-ms
                                 gc-run-time-ms
+                                gc-real-time-ms
                                 processor-cycles
                                 eval-calls
                                 lambdas-converted
