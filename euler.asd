@@ -6,7 +6,8 @@
   :license "Apache License v2.0"
   :depends-on ("cl-ppcre")
   :serial t
-  :components ((:module "src"
+  :components ((:module "solutions"
+                :pathname "src"
                 :components ((:file "utils")
                              (:file "p01")
                              (:file "p02")
@@ -43,16 +44,9 @@
                              (:file "p34")
                              (:file "p35" :depends-on ("utils"))
                              (:file "p36" :depends-on ("utils"))
-                             (:file "p37" :depends-on ("utils"))
-                             (:file "euler"
-                              :depends-on
-                              ("p01" "p02" "p03" "p04" "p05"
-                                     "p06" "p07" "p08" "p09"
-                                     "p10" "p11" "p12" "p13"
-                                     "p14" "p15" "p16" "p17"
-                                     "p18" "p19" "p20" "p21"
-                                     "p22" "p23" "p25" "p26"
-                                     "p27" "p28" "p29" "p30"
-                                     "p31" "p32" "p33" "p34"
-                                     "p35" "p36" "p37")))))
+                             (:file "p37" :depends-on ("utils"))))
+               (:module "runner"
+                :pathname "src"
+                :depends-on ("solutions")
+                :components ((:file "euler"))))
   :in-order-to ((test-op (test-op "euler-tests"))))
