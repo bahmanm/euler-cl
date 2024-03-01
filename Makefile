@@ -14,7 +14,11 @@ include  bmakelib/bmakelib.mk
 
 ####################################################################################################
 
-lisp.implementation := sbcl
+define-enum-lisps : bmakelib.enum.define( lisps/sbcl )
+
+include define-enum-lisps
+
+####################################################################################################
 
 define lisp.modify-path
 (setf asdf:*central-registry*
@@ -48,31 +52,34 @@ endef
 
 .PHONY : lisp
 
-lisp : bmakelib.error-if-blank( sbcl_snippet )
+lisp : bmakelib.error-if-blank( lisp_snippet )
+lisp : bmakelib.default-if-blank( lisp,sbcl ) \
+       bmakelib.enum.error-unless-member( lisps,lisp )
 lisp :
-	snippet_file="$${TMPDIR:-/tmp}/$$(mktemp euler-cl-XXXXXX)" \
-	&& echo "$${sbcl_snippet}" > "$${snippet_file}" \
-	&& $(lisp.implementation) \
+	lisp_file="$${TMPDIR:-/tmp}/$$(mktemp euler-cl-XXXXXX)" \
+	&& echo "$${lisp_snippet}" > "$${lisp_file}" \
+	&& $(lisp) \
+		--non-interactive \
 		--eval "(ql:quickload :asdf)" \
 		--eval "(asdf:load-system :asdf)" \
 		--eval "(ql:quickload :alexandria)" \
 		--eval "(ql:quickload :fiveam)" \
 		--eval "(ql:quickload :cl-ppcre)" \
-		--load "$${snippet_file}"
+		--load "$${lisp_file}"
 
 
 ####################################################################################################
 
 .PHONY : test
 
-test : export sbcl_snippet := $(call lisp.snippet,tests)
+test : export lisp_snippet := $(call lisp.snippet,tests)
 test : lisp
 
 ####################################################################################################
 
 .PHONY : run
 
-run : export sbcl_snippet := $(call lisp.snippet,solutions)
+run : export lisp_snippet := $(call lisp.snippet,solutions)
 run : lisp
 
 ####################################################################################################
