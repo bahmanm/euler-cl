@@ -27,4 +27,4 @@
   (is (= 0 (euler/p01:solution 2)))
   (is (= 23 (euler/p01:solution 10)))
   (is (= 33 (euler/p01:solution 11)))
-  (is (= 33 (euler/p01:solution 12))))
+  (is (= 33 (euler/p01:solution 900))))
