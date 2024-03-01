@@ -48,5 +48,5 @@
                                 (fiveam:*on-error* :backtrace)
                                 (fiveam:*verbose-failures* t))
                            (if (fiveam:run-all-tests :summary :end)
-                               (format t ":euler/tests ✅ All tests passed 😄")
-                               (error ":euler/tests ❌ At least one suite failed 😓")))))
+                               (format t "✅ All tests passed 😄")
+                               (error "❌ At least one suite failed 😓")))))
