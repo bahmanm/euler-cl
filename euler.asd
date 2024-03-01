@@ -44,7 +44,8 @@
                              (:file "p34")
                              (:file "p35")
                              (:file "p36")
-                             (:file "p37")))
+                             (:file "p37")
+                             (:file "p38")))
                (:module "runner"
                 :pathname "src"
                 :depends-on ("solutions")
