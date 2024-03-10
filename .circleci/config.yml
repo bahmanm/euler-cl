@@ -1,13 +1,10 @@
 ---
-
 version: 2.1
 
 jobs:
-
   test:
-
     docker:
-      - image: opensuse/tumbleweed:latest
+      - image: bdockerimg/quicklisp.bmakelib:opensuse-tumbleweed
         environment:
           LANG: en_US.UTF-8
     resource_class: medium
@@ -15,31 +12,12 @@ jobs:
     working_directory: ~/euler-cl
 
     steps:
-
-      - run:
-          name: Install the runtime
-          command: >-
-            zypper --non-interactive refresh
-            && zypper --non-interactive install sbcl make perl wget
-            && rpm --install --nosignature \
-                 https://github.com/bahmanm/bmakelib/releases/download/v0.7.0/bmakelib-0.7.0-1.1.noarch.rpm \
-            && { source /etc/profile || true; }
-
-      - run:
-          name: Install Quicklisp
-          command: |-
-            wget -O /tmp/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp \
-            && sbcl --load /tmp/quicklisp.lisp \
-                    --eval "(progn (quicklisp-quickstart:install) (exit))" \
-            && echo '(load "~/quicklisp/setup.lisp")' > ~/.sbclrc
-
       - checkout
 
       - run:
           name: Run the tests
           command: >-
             make test
-
 
 workflows:
   build_test:
