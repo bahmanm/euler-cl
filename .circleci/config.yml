@@ -1,13 +1,10 @@
 ---
-
 version: 2.1
 
 jobs:
-
   test:
-
     docker:
-      - image: bdockerimg/quicklisp:sbcl-2.4.2--opensuse-tumbleweed
+      - image: bdockerimg/quicklisp.bmakelib:opensuse-tumblweed
         environment:
           LANG: en_US.UTF-8
     resource_class: medium
@@ -15,23 +12,11 @@ jobs:
     working_directory: ~/euler-cl
 
     steps:
-
-      - run:
-          name: Install the runtime
-          command: >-
-            zypper --non-interactive refresh
-            && zypper --non-interactive install sbcl make perl wget
-            && rpm --install --nosignature \
-                 https://github.com/bahmanm/bmakelib/releases/download/v0.7.0/bmakelib-0.7.0-1.1.noarch.rpm \
-            && { source /etc/profile || true; }
-
       - checkout
 
       - run:
           name: Run the tests
-          command: >-
-            make test
-
+          command: "test"
 
 workflows:
   build_test:
