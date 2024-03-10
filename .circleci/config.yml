@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: bdockerimg/quicklisp.bmakelib:opensuse-tumblweed
+      - image: bdockerimg/quicklisp.bmakelib:opensuse-tumbleweed
         environment:
           LANG: en_US.UTF-8
     resource_class: medium
