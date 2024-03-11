@@ -26,5 +26,36 @@
       (unless (gethash i digits)
         (return nil)))))
 
+(defun number-to-digits (number)
+  (do* ((result '())
+        (number number
+                (floor (/ number 10)))
+        (digit (mod number 10)
+               (mod number 10)))
+       ((zerop number) result)
+    (setf result
+          (rplacd (list digit) result))))
+
+(defun concat-numbers (&rest numbers)
+  (let* ((digits '())
+         (result 0))
+    (do* ((numbers numbers
+                   (cdr numbers))
+          (number (car numbers)
+                  (car numbers)))
+         ((null numbers) t)
+      (setf digits
+            (concatenate 'list
+                         digits
+                         (number-to-digits number))))
+    (do* ((digits digits
+                  (cdr digits))
+          (digit (car digits)
+                 (car digits)))
+         ((null digits) t)
+      (setf result
+            (+ (* result 10) digit)))
+    result))
+
 (defun solution ()
   nil)
