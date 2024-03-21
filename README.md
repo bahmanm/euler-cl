@@ -1,8 +1,11 @@
 # Project Euler in Common Lisp 
 [![CircleCI](https://dl.circleci.com/status-badge/img/circleci/UMKeFZ8ns9T9vi5aquTfVT/CiytfQ2nzMkeYAKL8i7End/tree/master.svg?style=svg&circle-token=fb5d2555b905c322e658371ecb83f9250ed222d6)](https://dl.circleci.com/status-badge/redirect/circleci/UMKeFZ8ns9T9vi5aquTfVT/CiytfQ2nzMkeYAKL8i7End/tree/master)
+![Matrix](https://img.shields.io/matrix/github-bahmanm-euler-cl%3Amatrix.org?server_fqdn=matrix.org&style=flat&logo=matrix&logoColor=white&color=0e80c0)
+![Static Badge](https://img.shields.io/badge/problems-37-0e80c0?style=flat&logoColor=white&label=problems)
+![Static Badge](https://img.shields.io/badge/-SBCL-0e80c0?style=flat&logoColor=white&label=runs%20on)
+
 
 <img alt="euler-cl logo" src="https://imgur.com/NtKkzcX.png" style="height: 200px; width: 200px; ;" /> 
-
 
 Solutions to [Project Euler](https://projecteuler.net/) problems in Common Lisp - currently only tested against SBCL.
 
