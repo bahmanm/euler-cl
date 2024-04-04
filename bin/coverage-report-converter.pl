@@ -3,7 +3,7 @@ use strict ;
 use warnings ;
 use diagnostics ;
 use utf8 ;
-use feature ':5.38' ;
+use feature ':5.36' ;
 use Encode     qw(decode_utf8) ;
 use Data::Dump qw(dump) ;
 use HTML::TreeBuilder ;
@@ -16,33 +16,6 @@ use constant {
   SKIP        => 0,
   UNKNOWN     => -1
 } ;
-
-####################################################################################################
-
-{
-
-
-  package RawCvgData ;
-  use Moose ;
-
-  has 'line_no' => ( is => 'rw', isa => 'Int' ) ;
-  has 'state'   => ( is => 'rw', isa => 'Int' ) ;
-}
-
-####################################################################################################
-
-{
-
-
-  package CvgData ;
-  use Moose ;
-
-  has 'start_line_no'   => ( is => 'rw', isa => 'Int' ) ;
-  has 'start_column_no' => ( is => 'rw', isa => 'Int' ) ;
-  has 'end_line_no'     => ( is => 'rw', isa => 'Int' ) ;
-  has 'end_column_no'   => ( is => 'rw', isa => 'Int' ) ;
-  has 'covered'         => ( is => 'rw', isa => 'Boolean' ) ;
-}
 
 ####################################################################################################
 
