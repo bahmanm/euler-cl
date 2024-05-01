@@ -20,11 +20,19 @@ use constant {
 
 ####################################################################################################
 
-our $project_root     = "/home/bahman/workspace/euler-cl/euler-cl/" ;
-our $src_dir          = "src/" ;
-our $src_root         = "${project_root}${src_dir}" ;
-our $raw_reports_root = "${project_root}_build/coverage/" ;
-our $target_report    = "${project_root}_build/test-coverage-reports/coverage.txt" ;
+# Absolute path to the root of the project
+our $project_root = shift or die ( "No value for project_root" ) ;
+
+# Path to source directory relative to project_root
+our $src_dir = shift or die ( "No value for src_dir" ) ;
+
+# Path to the directory containing SBCL coverage reports - relative to project_root
+our $raw_reports_root = shift or die ( "No value for raw_reports_root" ) ;
+
+# Path to the result report relative to the project_root
+our $target_report = shift or die ( "No value for target_report" ) ;
+
+our $src_root = "${project_root}${src_dir}" ;
 
 ####################################################################################################
 
