@@ -1,9 +1,10 @@
 #!/usr/bin/perl
+# -*- mode: cperl; cperl-indent-level: 2; -*-
 use strict ;
 use warnings ;
 use diagnostics ;
 use utf8 ;
-use feature ':5.36' ;
+use feature ':5.38' ;
 use Encode     qw(decode_utf8) ;
 use Data::Dump qw(dump) ;
 use HTML::TreeBuilder ;
@@ -19,6 +20,14 @@ use constant {
 
 ####################################################################################################
 
+our $project_root     = "/home/bahman/workspace/euler-cl/euler-cl/" ;
+our $src_dir          = "src/" ;
+our $src_root         = "${project_root}${src_dir}" ;
+our $raw_reports_root = "${project_root}_build/coverage/" ;
+our $target_report    = "${project_root}_build/test-coverage-reports/coverage.txt" ;
+
+####################################################################################################
+
 sub process_html_tree ( $html_file, $subref )
 {
   my $tree = HTML::TreeBuilder::XPath->new ;
@@ -31,13 +40,13 @@ sub process_html_tree ( $html_file, $subref )
 
 ####################################################################################################
 
-sub get_test_coverage_data ( $tree )
+sub processor_test_coverage_data ( $tree )
 {
   my @coverage_data = () ;
   my @nobrs         = $tree->findnodes ( "//nobr" ) ;
   foreach my $nobr ( @nobrs )
   {
-    my $line_no   = get_line_no ( $nobr ) ;
+    my $line_no   = processor_line_no ( $nobr ) ;
     my $line_data = { line_no => $line_no } ;
     if ( $nobr->exists ( 'div[@class="source"]/code/span' ) )
     {
@@ -65,7 +74,7 @@ sub get_test_coverage_data ( $tree )
 
 ####################################################################################################
 
-sub get_line_no ( $nobr )
+sub processor_line_no ( $nobr )
 {
   my @nodes = $nobr->findnodes ( 'div[@class="source"]/div[@class="line-number"]/code' ) ;
   if ( @nodes )
@@ -81,14 +90,24 @@ sub get_line_no ( $nobr )
 
 ####################################################################################################
 
-my $html_file =
-  "/home/bahman/workspace/euler-cl/euler-cl/_build/coverage/1c372e17b26448c333047a14618c9a17.html" ;
-my @raw_coverage_data = process_html_tree ( $html_file, \&get_test_coverage_data ) ;
-say "-" x 80 ;
-dump ( \@raw_coverage_data ) ;
-my @compacted_data = compact_coverage_data ( @raw_coverage_data ) ;
-say "-" x 80 ;
-dump ( \@compacted_data ) ;
+sub get_test_target_path ( $tree )
+{
+  my @nodes = $tree->findnodes ( "body/h3" ) ;
+  if ( @nodes )
+  {
+    my $h3       = $nodes[ 0 ] ;
+    my @contents = $h3->content_list () ;
+    if ( @contents )
+    {
+      my $line = $contents[ 0 ] ;
+      if ( $line =~ /^\s*Coverage report:\s*${src_root}(.+)\s+$/ )
+      {
+        return $1 ;
+      }
+    }
+  }
+  return undef ;
+}
 
 ####################################################################################################
 
@@ -110,7 +129,9 @@ sub compact_coverage_data ( @coverage_data )
       $compacted_data =
       {
           start_line_no   => $cvgdata->{ line_no },
-          start_column_no => 1
+          start_column_no => 1,
+          end_line_no     => $cvgdata->{ line_no },
+          end_column_no   => 120
       } ;
       if ( $cvgdata->{ state } == COVERED )
       {
@@ -150,3 +171,54 @@ sub compact_coverage_data ( @coverage_data )
   }
   return @result ;
 }
+
+####################################################################################################
+
+sub process_raw_coverage_file ( $html_file )
+{
+  my @src_files = process_html_tree ( $html_file, \&get_test_target_path ) ;
+  if ( @src_files && $src_files[ 0 ] )
+  {
+    my $src_file = $src_files[ 0 ] ;
+    unless ( $src_file )
+    {
+      say ( "undefined src_file ($html_file)" ) ;
+    }
+    my @raw_coverage_data = process_html_tree ( $html_file, \&processor_test_coverage_data ) ;
+    my @compacted_data    = compact_coverage_data ( @raw_coverage_data ) ;
+    return {
+      src_file => $src_file,
+      data     => \@compacted_data
+    } ;
+  }
+  return undef ;
+}
+
+####################################################################################################
+
+open ( my $fh, ">${target_report}" ) or die ( "open(): $!\n" ) ;
+
+printf $fh ( "mode: set\n" ) ;
+
+my @raw_coverage_files = glob ( "${raw_reports_root}*.html" ) ;
+for my $raw_coverage_file ( @raw_coverage_files )
+{
+  my $coverage_data = process_raw_coverage_file ( $raw_coverage_file ) ;
+  if ( $coverage_data )
+  {
+    my $src_file = $coverage_data->{ src_file } ;
+    foreach my $entry ( @{ $coverage_data->{ data } } )
+    {
+      printf $fh (
+        "${src_dir}${src_file}:%d.%d,%d.%d 1 %d\n",
+        $entry->{ start_line_no },
+        $entry->{ start_column_no },
+        $entry->{ end_line_no },
+        $entry->{ end_column_no },
+        $entry->{ covered }
+      ) ;
+    }
+  }
+}
+
+close ( $fh ) ;
