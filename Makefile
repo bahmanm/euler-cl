@@ -6,6 +6,10 @@ SHELL := /usr/bin/env bash
 root.dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 sources.dir := $(root.dir)src/
 tests.dir := $(root.dir)tests/
+build.dir := $(root.dir)_build/
+
+tests.coverage-report.dir := $(build.dir)test-coverage-reports/
+tests.coverage-report.processor := $(root.dir)bin/coverage-report-converter.pl
 
 ####################################################################################################
 
@@ -17,6 +21,18 @@ include  bmakelib/bmakelib.mk
 define-enum-lisps : bmakelib.enum.define( lisps/sbcl )
 
 include define-enum-lisps
+
+####################################################################################################
+
+$(build.dir) :
+	mkdir -p $(@) $(test.coverage-report.dir)
+
+####################################################################################################
+
+.PHONY : clean
+
+clean :
+	-rm -rf $(build.dir)
 
 ####################################################################################################
 
@@ -33,6 +49,15 @@ define lisp.run-tests
 (asdf:test-system :euler)
 endef
 
+# 1: coverage report directory
+define lisp.run-tests-with-coverage
+(require :sb-cover)
+(declaim (optimize sb-cover:store-coverage-data))
+$(call lisp.run-tests)
+(sb-cover:report "$(tests.coverage-report.dir)")
+(declaim (optimize (sb-cover:store-coverage-data 0)))
+endef
+
 define lisp.run-solutions
 (asdf:load-system :euler)
 (euler:solutions)
@@ -42,6 +67,7 @@ define lisp.exit
 (exit)
 endef
 
+# 1: snippet to run
 define lisp.snippet
 $(lisp.modify-path)
 $(lisp.run-$(1))
@@ -56,7 +82,7 @@ lisp : bmakelib.error-if-blank( lisp_snippet )
 lisp : bmakelib.default-if-blank( lisp,sbcl ) \
        bmakelib.enum.error-unless-member( lisps,lisp )
 lisp :
-	lisp_file="$${TMPDIR:-/tmp}/$$(mktemp euler-cl-XXXXXX)" \
+	lisp_file="$$(mktemp --tmpdir euler-cl-XXXXXX)" \
 	&& echo "$${lisp_snippet}" > "$${lisp_file}" \
 	&& $(lisp) \
 		--non-interactive \
@@ -70,10 +96,19 @@ lisp :
 
 ####################################################################################################
 
+.PHONY : _test
+
+_test : export lisp_snippet := $(call lisp.snippet,tests$(if $(filter yes,$(test.produce-coverage-report)),-with-coverage,))
+_test : $(if $(filter yes,$(test.produce-coverage-report)),clean,)
+_test : lisp
+
+####################################################################################################
+
 .PHONY : test
 
-test : export lisp_snippet := $(call lisp.snippet,tests)
-test : lisp
+test : | $(build.dir)
+test : bmakelib.default-if-blank( test.produce-coverage-report,no )
+test : _test
 
 ####################################################################################################
 
