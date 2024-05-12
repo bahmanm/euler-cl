@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Install Python
           command: >-
-            zypper --non-interactive refrsh
+            zypper --non-interactive refresh
             && zypper --non-interactive install python311
 
       - checkout
