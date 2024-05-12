@@ -1,25 +1,75 @@
 ---
 version: 2.1
 
-jobs:
-  test:
+executors:
+  docker:
     docker:
       - image: bdockerimg/quicklisp.bmakelib:opensuse-tumbleweed
+        auth:
+          username: "${DOCKER_USER}"
+          password: "${DOCKER_TOKEN}"
         environment:
           LANG: en_US.UTF-8
+    working_directory: "~/euler-cl"
     resource_class: medium
 
-    working_directory: ~/euler-cl
-
+jobs:
+  test:
+    executor: docker
     steps:
       - checkout
 
       - run:
           name: Run the tests
           command: >-
-            make test
+            make test.produce-coverage-report=yes test
+
+      - persist_to_workspace:
+          root: "_build"
+          paths:
+            - "test-coverage-reports"
+
+      - store_artifacts:
+          path: "_build/test-coverage-reports"
+          destination: "test-coverage.data"
+
+  test_coverage:
+    executor: docker
+    steps:
+      - run:
+          name: Install Python
+          command: >-
+            zypper --non-interactive refrsh
+            && zypper --non-interactive install python311
+
+      - checkout
+
+      - run:
+          name: Install Codecov-cli
+          command: >-
+            python3 -m venv .env
+            && source .env/bin/activate
+            && pip install -r requirements.txt
+
+      - attach_workspace:
+          at: "_build"
+
+      - run:
+          name: Upload the coverage reports
+          command: >-
+            source .env/bin/activate
+            && codecovcli --verbose \
+               upload-process \
+               --token "${CODECOV_TOKEN}" \
+               --git-service github \
+               --fail-on-error \
+               --dir=_build/test-coverage-reports \
+               --report-type=coverage
 
 workflows:
   build_test:
     jobs:
       - test
+      - test_coverage:
+          requires:
+            - test
