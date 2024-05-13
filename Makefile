@@ -96,11 +96,22 @@ lisp :
 
 ####################################################################################################
 
-.PHONY : _test
+.PHONY : test.run
 
-_test : export lisp_snippet := $(call lisp.snippet,tests$(if $(filter yes,$(test.produce-coverage-report)),-with-coverage,))
-_test : $(if $(filter yes,$(test.produce-coverage-report)),clean,)
-_test : lisp
+test.run : export lisp_snippet := $(call lisp.snippet,tests$(if $(filter yes,$(test.produce-coverage-report)),-with-coverage,))
+test.run : $(if $(filter yes,$(test.produce-coverage-report)),clean,)
+test.run : lisp
+
+####################################################################################################
+
+.PHONY : test.codecov-report
+
+test.codecov-report :
+	$(tests.coverage-report.processor) \
+		$(root.dir) \
+		src \
+		$(tests.coverage-report.dir) \
+		$(build.dir)coverage.txt
 
 ####################################################################################################
 
@@ -108,7 +119,8 @@ _test : lisp
 
 test : | $(build.dir)
 test : bmakelib.default-if-blank( test.produce-coverage-report,no )
-test : _test
+test : test.run
+test : $(if $(filter yes,$(test.produce-coverage-report)),test.codecov-report,)
 
 ####################################################################################################
 

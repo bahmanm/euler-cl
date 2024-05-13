@@ -26,10 +26,10 @@ our $project_root = shift or die ( "No value for project_root" ) ;
 # Path to source directory relative to project_root
 our $src_dir = shift or die ( "No value for src_dir" ) ;
 
-# Path to the directory containing SBCL coverage reports - relative to project_root
+# Path to the directory containing SBCL coverage reports
 our $raw_reports_root = shift or die ( "No value for raw_reports_root" ) ;
 
-# Path to the result report relative to the project_root
+# Path to the result report
 our $target_report = shift or die ( "No value for target_report" ) ;
 
 our $src_root = "${project_root}${src_dir}" ;
