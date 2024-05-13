@@ -22,7 +22,7 @@ jobs:
           command: >-
             zypper --non-interactive refresh
             && zypper --non-interactive install \
-               perl-HTML-tree \
+               perl-HTML-Tree \
                perl-HTML-TreeBuilder-XPath \
                perl-Data-Dump
 
