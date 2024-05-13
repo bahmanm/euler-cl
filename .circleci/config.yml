@@ -36,7 +36,7 @@ jobs:
       - persist_to_workspace:
           root: "_build"
           paths:
-            - "*.txt"
+            - "test-coverage-reports"
 
       - store_artifacts:
           path: "_build/test-coverage-reports"

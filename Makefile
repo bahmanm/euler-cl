@@ -111,7 +111,7 @@ test.codecov-report :
 		$(root.dir) \
 		src \
 		$(tests.coverage-report.dir) \
-		$(build.dir)coverage.txt
+		$(tests.coverage-report.dir)coverage.txt
 
 ####################################################################################################
 
