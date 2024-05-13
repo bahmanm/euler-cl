@@ -17,6 +17,15 @@ jobs:
   test:
     executor: docker
     steps:
+      - run:
+          name: Install Perl modules
+          command: >-
+            zypper --non-interactive refresh
+            && zypper --non-interactive install \
+               perl-HTML-tree \
+               perl-HTML-TreeBuilder-XPath \
+               perl-Data-Dump
+
       - checkout
 
       - run:
