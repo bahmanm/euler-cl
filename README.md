@@ -1,5 +1,6 @@
 # Project Euler in Common Lisp 
 [![CircleCI](https://dl.circleci.com/status-badge/img/circleci/UMKeFZ8ns9T9vi5aquTfVT/CiytfQ2nzMkeYAKL8i7End/tree/master.svg?style=svg&circle-token=fb5d2555b905c322e658371ecb83f9250ed222d6)](https://dl.circleci.com/status-badge/redirect/circleci/UMKeFZ8ns9T9vi5aquTfVT/CiytfQ2nzMkeYAKL8i7End/tree/master)
+[![codecov](https://codecov.io/gh/bahmanm/euler-cl/graph/badge.svg?token=RY6xGeuTqS)](https://codecov.io/gh/bahmanm/euler-cl)
 ![Matrix](https://img.shields.io/matrix/github-bahmanm-euler-cl%3Amatrix.org?server_fqdn=matrix.org&style=flat&logo=matrix&logoColor=white&color=0e80c0)
 ![Static Badge](https://img.shields.io/badge/problems-37-0e80c0?style=flat&logoColor=white&label=problems)
 ![Static Badge](https://img.shields.io/badge/-SBCL-0e80c0?style=flat&logoColor=white&label=runs%20on)

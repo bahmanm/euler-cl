@@ -1,0 +1,82 @@
+--character-encoding=utf8
+--output-line-ending=unix
+--iterations=3
+--backup-and-modify-in-place
+
+--add-terminal-newline
+--maximum-line-length=100
+--maximum-consecutive-blank-lines=2
+
+--indent-columns=2
+--continuation-indentation=2
+--extended-continuation-indentation
+--closing-token-indentation=1
+--nooutdent-long-lines
+--nooutdent-long-comments
+--hanging-side-comments
+--static-block-comments
+
+--paren-tightness=0
+--brace-tightness=0
+--block-brace-tightness=0
+--square-bracket-tightness=0
+--extended-block-tightness
+--extended-block-tightness-list="k t"
+--tight-secret-operators
+
+--add-semicolons
+
+--space-terminal-semicolon
+--space-for-semicolon
+--space-signature-paren=2
+--space-prototype-paren=2
+--space-function-paren
+--space-keyword-paren
+
+--function-paren-vertical-alignment
+--keyword-paren-inner-tightness=0
+--logical-padding
+--space-backslash-quote=2
+
+--indent-block-comments
+--nocuddled-else
+
+--opening-brace-on-new-line
+--opening-anonymous-sub-brace-on-new-line
+--cuddled-paren-brace
+--break-before-hash-brace=3
+--break-before-hash-brace-and-indent=1
+--break-before-square-bracket=3
+--break-before-square-bracket-and-indent=1
+--break-before-paren=3
+--break-before-paren-and-indent=1
+--brace-follower-vertical-tightness=0
+
+--weld-nested-containers
+--vertical-tightness=0
+--vertical-tightness-closing=0
+
+# --stack-opening-paren
+# --stack-opening-hash-brace
+# --stack-opening-square-bracket
+# --stack-closing-paren
+# --stack-closing-hash-brace
+# --stack-closing-square-bracket
+# --stack-closing-block-brace
+
+--comma-arrow-breakpoints=5
+--delete-repeated-commas
+--delete-weld-interfering-commas
+
+--warn-missing-else
+--add-missing-else
+
+--blank-lines-before-subs=1
+--blank-lines-before-packages=2
+--blanks-before-blocks
+--blanks-before-comments
+--keep-old-blank-lines=1
+
+--extended-syntax
+
+--trim-pod
